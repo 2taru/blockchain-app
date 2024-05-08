@@ -1,7 +1,12 @@
 package com.taru;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
+import java.security.Security;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+
+        Security.addProvider(new BouncyCastleProvider());
     }
 }
