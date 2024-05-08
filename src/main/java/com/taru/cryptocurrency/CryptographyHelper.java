@@ -38,6 +38,7 @@ public class CryptographyHelper {
 
     /**
      * This method generate public and private keys using ECDSA.
+     *
      * @return {@link java.security.KeyPair}, where
      * <p>private key: 256 bits long random integer;</p>
      * <p>public key: point on the elliptic curve ((x,y) - both of these values are 256 bits long)</p>
@@ -78,8 +79,9 @@ public class CryptographyHelper {
 
     /**
      * This method checks whether the given transaction belongs to the sender based on the signature.
+     *
      * @param publicKey sender public key
-     * @param data data to verify
+     * @param data      data to verify
      * @param signature signed data of sender
      * @return true if the transaction belongs to the sender, or false otherwise
      */
@@ -89,7 +91,7 @@ public class CryptographyHelper {
             ecdsaSignature.initVerify(publicKey);
             ecdsaSignature.update(data.getBytes());
             return ecdsaSignature.verify(signature);
-        }catch(Exception e) {
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
