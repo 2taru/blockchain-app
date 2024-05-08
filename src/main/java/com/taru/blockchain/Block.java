@@ -40,7 +40,7 @@ public class Block {
     }
 
     /**
-     * Generate hash for current block.}
+     * Generate hash for current block.
      */
     public void generateHash() {
         String dataToHash = previousHash + timeStamp +
