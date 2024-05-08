@@ -14,7 +14,7 @@ public class Block {
     /**
      * Hash of this block.
      */
-    private final String hash;
+    private String hash;
     /**
      * Hash of the previous block to which this block is attached.
      */
@@ -36,21 +36,21 @@ public class Block {
         this.transactions = new ArrayList<>();
         this.previousHash = previousHash;
         this.timeStamp = new Date().getTime();
-        this.hash = generateHash();
+        generateHash();
     }
 
     /**
-     * Generate hash for current block.
-     * @return 64 hexadecimal characters as {@link java.lang.String}
+     * Generate hash for current block.}
      */
-    public String generateHash() {
+    public void generateHash() {
         String dataToHash = previousHash + timeStamp +
                 transactions.toString() + nonce;
-        return CryptographyHelper.generateHash(dataToHash);
+        this.hash = CryptographyHelper.generateHash(dataToHash);
     }
 
     /**
      * Add valid transactions to the block.
+     *
      * @param transaction transaction to add.
      * @return true if transaction vas added, false otherwise.
      */
@@ -79,5 +79,16 @@ public class Block {
 
     public String getHash() {
         return this.hash;
+    }
+
+    @Override
+    public String toString() {
+        return "Block{" +
+                "hash='" + hash + '\'' +
+                ", previousHash='" + previousHash + '\'' +
+                ", timeStamp=" + timeStamp +
+                ", transactions=" + transactions +
+                ", nonce=" + nonce +
+                '}';
     }
 }

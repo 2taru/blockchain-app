@@ -5,6 +5,7 @@ import com.taru.blockchain.Blockchain;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Transaction {
@@ -39,12 +40,12 @@ public class Transaction {
     public List<TransactionOutput> outputs;
 
     public Transaction(PublicKey sender, PublicKey receiver, double amount, List<TransactionInput> inputs) {
-        this.transactionId = calculateHash();
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
         this.inputs = inputs;
         this.outputs = new ArrayList<>();
+        this.transactionId = calculateHash();
     }
 
     /**
@@ -189,5 +190,13 @@ public class Transaction {
 
     public void setOutputs(List<TransactionOutput> outputs) {
         this.outputs = outputs;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionId='" + transactionId + '\'' +
+                ", amount=" + amount +
+                '}';
     }
 }
